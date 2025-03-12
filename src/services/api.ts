@@ -67,3 +67,17 @@ export const updateCard = async (cardData: Admission) => {
     throw new Error('Falha ao atualizar status')
   }
 }
+
+export const deleteRegister = async (id: string) => {
+  try {
+    const response = await fetch(`${baseUrl}/registrations/${id}`, {
+      method: 'DELETE'
+    });
+    if (!response.ok) {
+      throw new Error('Falha ao deletar card');
+    }
+    return response.json();
+  } catch (error) {
+    throw new Error('Falha ao deletar card')
+  }
+}

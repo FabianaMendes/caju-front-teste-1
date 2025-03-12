@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { getRegistrations, searchRegisterByCpf, updateCard } from "~/services/api";
+import { deleteRegister, getRegistrations, searchRegisterByCpf, updateCard } from "~/services/api";
 import { Admission } from "~/types/Admission";
 
 interface IRegisterContext {
@@ -11,6 +11,7 @@ interface IRegisterContext {
   fetchAllRegistrations: () => void;
   fetchRegistrationsByCpf: (cpf: string) => void;
   updateCardStatus: (cardData: Admission) => void;
+  deleteCard: (id: string) => void;
 }
 
 const RegistersContext = createContext<IRegisterContext>({} as IRegisterContext)
@@ -70,6 +71,21 @@ const RegistersProvider = ({
     })
   }
 
+  const deleteCard = async (id: string) => {
+    setIsUpdatingCard(id);
+    await deleteRegister(id)
+    .then(() => {
+      fetchAllRegistrations();
+      toast.success('Card deletado com sucesso!')
+    })
+    .catch((error) => {
+      toast.error(error)
+    })
+    .finally(() => {
+      setIsUpdatingCard('');
+    })
+  }
+
   return (
     <RegistersContext.Provider
       value={{
@@ -79,7 +95,8 @@ const RegistersProvider = ({
         isUpdatingCard,
         fetchAllRegistrations,
         fetchRegistrationsByCpf,
-        updateCardStatus
+        updateCardStatus,
+        deleteCard
       }}
     >
       {children}

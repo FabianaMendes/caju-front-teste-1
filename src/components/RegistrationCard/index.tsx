@@ -20,7 +20,8 @@ const RegistrationCard = ({ data }: Props) => {
   const [showModal, setShowModal] = useState<boolean>(false)
   const {
     updateCardStatus,
-    isUpdatingCard
+    isUpdatingCard,
+    deleteCard
   } = useRegisters()
 
   const handleCloseModal = () => {
@@ -32,7 +33,10 @@ const RegistrationCard = ({ data }: Props) => {
     if (cardData.status !== Status.REPROVED) {
       setModalProps({
         onCancel: () => handleCloseModal(),
-        onConfirm: () => updateCardStatus({ ...cardData, status: Status.REPROVED }),
+        onConfirm: () => {
+          updateCardStatus({ ...cardData, status: Status.REPROVED });
+          handleCloseModal();
+        },
         text: `Tem certeza que deseja REPROVAR o candidato ${cardData.employeeName}?`
       })
       setShowModal(true)
@@ -43,7 +47,10 @@ const RegistrationCard = ({ data }: Props) => {
     if (cardData.status !== Status.APPROVED) {
       setModalProps({
         onCancel: () => handleCloseModal(),
-        onConfirm: () => updateCardStatus({ ...cardData, status: Status.APPROVED }),
+        onConfirm: () => {
+          updateCardStatus({ ...cardData, status: Status.APPROVED });
+          handleCloseModal();
+        },
         text: `Tem certeza que deseja APROVAR o candidato ${cardData.employeeName}?`
       })
       setShowModal(true)
@@ -54,8 +61,25 @@ const RegistrationCard = ({ data }: Props) => {
     if (cardData.status !== Status.REVIEW) {
       setModalProps({
         onCancel: () => handleCloseModal(),
-        onConfirm: () => updateCardStatus({ ...cardData, status: Status.REVIEW }),
+        onConfirm: () => {
+          updateCardStatus({ ...cardData, status: Status.REVIEW });
+          handleCloseModal();
+        },
         text: `Tem certeza que deseja REVISAR o candidato ${cardData.employeeName}?`
+      })
+      setShowModal(true)
+    }
+  }
+
+  const handleDelete = (cardData: Admission) => {
+    if (cardData.status !== Status.REVIEW) {
+      setModalProps({
+        onCancel: () => handleCloseModal(),
+        onConfirm: () => {
+          deleteCard(cardData.id);
+          handleCloseModal();
+        },
+        text: `Tem certeza que deseja DELETAR o candidato ${cardData.employeeName}?`
       })
       setShowModal(true)
     }
@@ -104,7 +128,7 @@ const RegistrationCard = ({ data }: Props) => {
               Revisar novamente
             </ButtonSmall>
           )}
-          <HiOutlineTrash />
+          <HiOutlineTrash role="button" onClick={() => handleDelete(data)} />
         </S.Actions>
       </S.Card>
       {showModal && (
