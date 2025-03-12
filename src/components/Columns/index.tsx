@@ -1,7 +1,7 @@
-
 import * as S from "./styles";
 import RegistrationCard from "../RegistrationCard";
 import { Admission, Status } from "~/types/Admission";
+import Loader from "../Loader";
 
 const allColumns = [
   { status: Status.REVIEW, title: "Pronto para revisar" },
@@ -11,11 +11,15 @@ const allColumns = [
 
 type Props = {
   registrations?: any[];
+  isLoading?: boolean;
 };
 
-const Collumns = ({ registrations }: Props) => {
+const Collumns = ({ registrations, isLoading }: Props) => {
   return (
     <S.Container>
+      {isLoading && (
+        <S.ScreenLoader><Loader size="40px" /></S.ScreenLoader>
+      )}
       {allColumns.map((collum) => (
         <S.Column $status={collum.status} key={collum.title}>
           <>

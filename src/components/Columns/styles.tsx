@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 const registrationStatusStyles: {
   [key in string]: { background: string; title: string };
 } = {
@@ -22,6 +23,7 @@ export const Container = styled.div`
   grid-gap: 24px;
   justify-content: center;
   margin-top: 24px;
+  position: relative;
 `;
 
 export const Column = styled.div<{ $status: any }>`
@@ -43,3 +45,15 @@ export const CollumContent = styled.div`
   overflow: auto;
   max-height: 85%;
 `;
+
+export const ScreenLoader = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  opacity: 0.6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 100px;
+`
