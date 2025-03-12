@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Button = styled.button`
+export const Button = styled.button`
   outline: none;
   display: flex;
   align-items: center;
@@ -16,19 +16,18 @@ const Button = styled.button`
   font-weight: 600;
 `;
 
-export const ButtonSmall = styled.button<{
-  bgcolor?: string;
-  color?: string;
-}>`
+interface ButtonSmallProps {
+  $bgColor?: string;
+  $color?: string;
+}
+
+export const ButtonSmall = styled.button<ButtonSmallProps>`
   font-size: 12px;
   outline: none;
   border-radius: 4px;
   border: none;
   padding: 4px 16px;
-  background-color: ${(props) => props.bgcolor ?? 'none'};
-  color: ${(props) => props.color ?? "#000"};
+  background-color: ${({ $bgColor }) => $bgColor ?? 'none'};
+  color: ${({ $color }) => $color ?? "#000"};
   cursor: pointer;
 `;
-
-
-export default Button;
