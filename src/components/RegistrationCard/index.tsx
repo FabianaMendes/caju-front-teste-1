@@ -6,12 +6,36 @@ import {
   HiOutlineCalendar,
   HiOutlineTrash,
 } from "react-icons/hi";
+import { Admission, Status } from "~/types/Admission";
+import { useRegisters } from "~/context/RegistersContext";
 
 type Props = {
-  data: any;
+  data: Admission;
 };
 
 const RegistrationCard = ({ data }: Props) => {
+  const {
+    updateCardStatus
+  } = useRegisters()
+
+  const handleReprove = (cardData: Admission) => {
+    if (cardData.status !== Status.REPROVED) {
+      updateCardStatus({ ...cardData, status: Status.REPROVED })
+    }
+  }
+
+  const handleApprove = (cardData: Admission) => {
+    if (cardData.status !== Status.APPROVED) {
+      updateCardStatus({ ...cardData, status: Status.APPROVED })
+    }
+  }
+
+  const handleReview = (cardData: Admission) => {
+    if (cardData.status !== Status.REVIEW) {
+      updateCardStatus({ ...cardData, status: Status.REVIEW })
+    }
+  }
+  
   return (
     <S.Card>
       <S.IconAndText>
@@ -27,9 +51,21 @@ const RegistrationCard = ({ data }: Props) => {
         <span>{data.admissionDate}</span>
       </S.IconAndText>
       <S.Actions>
-        <ButtonSmall bgColor="rgb(255, 145, 154)">Reprovar</ButtonSmall>
-        <ButtonSmall bgColor="rgb(155, 229, 155)">Aprovar</ButtonSmall>
-        <ButtonSmall bgColor="#ff8858">Revisar novamente</ButtonSmall>
+        {data.status === Status.REVIEW && (
+          <>
+            <ButtonSmall bgColor="rgb(255, 145, 154)" onClick={() => handleReprove(data)}>
+              Reprovar
+            </ButtonSmall>
+            <ButtonSmall bgColor="rgb(155, 229, 155)" onClick={() => handleApprove(data)}>
+              Aprovar
+            </ButtonSmall>
+          </>
+        )}
+        {data.status !== Status.REVIEW && (
+          <ButtonSmall bgColor="#ff8858" onClick={() => handleReview(data)}>
+            Revisar novamente
+          </ButtonSmall>
+        )}
         <HiOutlineTrash />
       </S.Actions>
     </S.Card>

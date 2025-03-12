@@ -1,12 +1,12 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { getRegistrations, searchRegisterByCpf } from "~/services/api";
+import { createContext, useContext, useState } from "react";
+import { getRegistrations, searchRegisterByCpf, updateCard } from "~/services/api";
 import { Admission } from "~/types/Admission";
 
 interface IRegisterContext {
   registrations: Admission[];
-  updateRegistrations: (values: Admission[]) => void;
   fetchAllRegistrations: () => void;
   fetchRegistrationsByCpf: (cpf: string) => void;
+  updateCardStatus: (cardData: Admission) => void;
 }
 
 const RegistersContext = createContext<IRegisterContext>({} as IRegisterContext)
@@ -26,7 +26,6 @@ const RegistersProvider = ({
       try {
         const data = await getRegistrations();
         setRegistrations(data);
-        console.log(data)
       } catch (error) {
         alert(error);
       }
@@ -36,27 +35,28 @@ const RegistersProvider = ({
     try {
       const data = await searchRegisterByCpf(cpf);
       setRegistrations(data);
-      console.log(data)
     } catch (error) {
       alert(error);
     }
   }
 
-  useEffect(() => {
-    fetchAllRegistrations()
-  }, [])
-
-  const updateRegistrations = (values: Admission[]) => {
-    setRegistrations(values)
+  const updateCardStatus = async (cardData: Admission) => {
+    try {
+      await updateCard(cardData).then(() => {
+        fetchAllRegistrations();
+      })
+    } catch (error) {
+      alert(error);
+    }
   }
 
   return (
     <RegistersContext.Provider
       value={{
         registrations,
-        updateRegistrations,
         fetchAllRegistrations,
-        fetchRegistrationsByCpf
+        fetchRegistrationsByCpf,
+        updateCardStatus
       }}
     >
       {children}
