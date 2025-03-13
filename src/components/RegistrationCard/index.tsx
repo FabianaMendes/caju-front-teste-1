@@ -8,7 +8,7 @@ import {
 } from "react-icons/hi";
 import { Status } from "~/types/Admission";
 
-type Props = {
+interface Props {
   isLoading: boolean;
   title: string;
   email: string;

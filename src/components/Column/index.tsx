@@ -1,7 +1,7 @@
 import * as S from "./styles";
 import { Status } from "~/types/Admission";
 
-type Props = {
+interface Props {
   status: Status;
   title: string;
   children?: React.ReactNode;
