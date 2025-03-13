@@ -56,3 +56,15 @@ export function applyCpfMask(cpf: string) {
 
   return formattedCpf;
 }
+
+export const formatDate = (dateString?: string): string => {
+  if (!dateString) return ''
+  const parts = dateString.split('-');
+  const day = String(parts[2]).padStart(2, '0');
+  const month = String(parts[1]).padStart(2, '0');
+  const year = String(parts[0]);
+  return `${day}/${month}/${year}`;
+};
+
+export const emailValidationRegex = new RegExp(/^[a-zA-Z0-9\\+\\.\\_\\%\\+\\-]{1,256}@[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}(?:\.[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25})+/)
+export const fullNameValidationRegex = new RegExp('[\\wà-úÀ-Ú]+\\s[\\wà-úÀ-Ú]')

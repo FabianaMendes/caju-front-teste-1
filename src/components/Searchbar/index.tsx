@@ -8,7 +8,7 @@ import { IconButton } from "~/components/IconButton";
 import TextField from "~/components/TextField";
 import { useRegisters } from "~/context/RegistersContext";
 import * as S from "./styles";
-import { applyCpfMask, isValidCpf } from "../utils";
+import { applyCpfMask, isValidCpf } from "../../utils";
 
 export const SearchBar = () => {
   const history = useHistory();
@@ -68,13 +68,15 @@ export const SearchBar = () => {
   
   return (
     <S.Container>
-      <TextField
-        placeholder="Digite um CPF válido"
-        onChange={handleChangeCpf}
-        disabled={isFetchingByCpf}
-        error={cpfError}
-        value={cpf}
-      />
+      <S.SearchInput>
+        <TextField
+          placeholder="Digite um CPF válido"
+          onChange={handleChangeCpf}
+          disabled={isFetchingByCpf}
+          error={cpfError}
+          value={cpf}
+        />
+      </S.SearchInput>
       <S.Actions>
         <IconButton aria-label="refetch">
           <HiRefresh onClick={clearFilter} />

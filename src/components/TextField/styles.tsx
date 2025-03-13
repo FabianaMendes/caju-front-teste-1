@@ -33,15 +33,8 @@ export const Input = styled.input<InputProps>`
   }
 `;
 
-export const InputWrapper = styled.div`
-  width: 40%;
-  height: 56px;
-  padding-top: 10px;
-`
-
 export const Span = styled.span`
   font-size: 12;
   color: #da0000d8;
-  height: 12px;
   width: 100%;
 `

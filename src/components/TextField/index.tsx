@@ -9,11 +9,11 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 
 const TextField = ({label, error, id, ...props}: Props) => {
   return (
-    <S.InputWrapper>
+    <div>
       <label htmlFor={id}>{label}</label>
       <S.Input {...props} disabled={props.disabled} />
       <S.Span>{error}</S.Span>
-    </S.InputWrapper>
+    </div>
   );
 };
 

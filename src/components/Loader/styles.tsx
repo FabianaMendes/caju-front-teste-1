@@ -13,6 +13,7 @@ interface LoaderProps {
   color?: string;
   size?: string;
 }
+
 export const LoaderContainer = styled.div<LoaderProps>`
   color: ${({ color }) => color ?? 'gray'};
   svg {

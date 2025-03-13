@@ -10,5 +10,5 @@ export type Admission = {
   employeeName: string;
   status: Status;
   cpf: string;
-  id: string;
+  id?: string;
 }
