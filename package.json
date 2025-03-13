@@ -12,6 +12,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@testing-library/react": "^16.2.0",
+    "@types/jest": "^29.5.14",
     "axios": "^1.7.2",
     "json-server": "^1.0.0-beta.1",
     "react": "^18.2.0",
@@ -23,12 +25,13 @@
   },
   "devDependencies": {
     "@nabla/vite-plugin-eslint": "^2.0.4",
-    "@testing-library/jest-dom": "^6.4.6",
-    "@testing-library/react": "13.0.0",
-    "@types/jest": "^29.5.14",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "6.6.3",
+    "@testing-library/react-hooks": "^8.0.1",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@types/react-router-dom": "^5.3.3",
+    "@types/testing-library__jest-dom": "^6.0.0",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
     "@vitejs/plugin-react": "^4.2.1",

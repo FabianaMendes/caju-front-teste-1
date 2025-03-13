@@ -9,12 +9,12 @@ type Props = {
 
 const Column = ({ status, title, children }: Props) => {
   return (
-    <S.Column $status={status}>
+    <S.Column $status={status} data-testid={`column-${status}`}>
       <>
-        <S.TitleColumn $status={status}>
+        <S.TitleColumn $status={status} data-testid={`column-title-${status}`}>
           {title}
         </S.TitleColumn>
-        <S.CollumContent>
+        <S.CollumContent data-testid={`column-content-${status}`}>
           {children}
         </S.CollumContent>
       </>

@@ -6,7 +6,7 @@ interface Props {
 
 const Header = ({ text }: Props) => {
   return (
-    <S.Header>
+    <S.Header data-testid="header">
       <h1>
         {text}
       </h1>

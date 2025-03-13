@@ -33,7 +33,7 @@ const RegistrationCard = ({
 }: Props) => {  
   return (
     <>
-      <S.Card $isLoading={isLoading}>
+      <S.Card $isLoading={isLoading} data-testid="registration-card">
         <S.IconAndText>
           <HiOutlineUser />
           <h3>{title}</h3>
@@ -54,6 +54,7 @@ const RegistrationCard = ({
                 onClick={onReprove}
                 disabled={isLoading}
                 id="reprove"
+                data-testid="reprove-button"
               >
                 Reprovar
               </ButtonSmall>
@@ -62,6 +63,7 @@ const RegistrationCard = ({
                 onClick={onApprove}
                 disabled={isLoading}
                 id="approve"
+                data-testid="approve-button"
               >
                 Aprovar
               </ButtonSmall>
@@ -73,12 +75,17 @@ const RegistrationCard = ({
               onClick={onReview}
               disabled={isLoading}
               id="review"
+              data-testid="review-button"
             >
               Revisar novamente
             </ButtonSmall>
           )}
-          <S.StyledIconButton borderColor="transparent" iconColor="black" id="delete">
-            <HiOutlineTrash role="button" onClick={onDelete} />
+          <S.StyledIconButton
+            borderColor="transparent"
+            iconColor="black"
+            id="delete"
+          >
+            <HiOutlineTrash role="button" onClick={onDelete} data-testid="delete-button" />
           </S.StyledIconButton>
         </S.Actions>
       </S.Card>

@@ -8,7 +8,7 @@ interface Props {
 
 const Loader = ({ size, color }: Props) => {
   return (
-    <S.LoaderContainer size={size} color={color}>
+    <S.LoaderContainer size={size} color={color} data-testid="loader">
       <AiOutlineLoading3Quarters/>
     </S.LoaderContainer>
   )
