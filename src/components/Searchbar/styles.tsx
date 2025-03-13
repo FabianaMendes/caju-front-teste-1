@@ -8,7 +8,7 @@ export const Container = styled.div`
 `;
 
 export const SearchInput = styled.section`
-  width: 40%;
+  width: 300px;
   height: 56px;
   padding-top: 10px;
 `

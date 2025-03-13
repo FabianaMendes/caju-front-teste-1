@@ -119,6 +119,7 @@ const NewUserPage = () => {
             placeholder="Nome"
             label="Nome"
             name="employeeName"
+            id="employeeName"
             error={errors.employeeName}
             onChange={(event: ChangeEvent<HTMLInputElement>) => validateName(event.target.value)}
           />
@@ -127,6 +128,7 @@ const NewUserPage = () => {
             label="Email"
             type="email"
             name="email"
+            id="email"
             error={errors.email}
             onChange={(event: ChangeEvent<HTMLInputElement>) => validateEmail(event.target.value)}
           />
@@ -134,6 +136,7 @@ const NewUserPage = () => {
             placeholder="CPF"
             label="CPF"
             name="cpf"
+            id="cpf"
             error={errors.cpf}
             value={cpf}
             onChange={handleChangeCpf}
@@ -142,6 +145,7 @@ const NewUserPage = () => {
             label="Data de admissão"
             type="date"
             name="admissionDate"
+            id="admissionDate"
             error={errors.admissionDate}
           />
           <S.StyledButton type="submit" isSubmitting={addNewRegisterStatus.isLoading}>

@@ -84,8 +84,10 @@ const RegistrationCard = ({
             borderColor="transparent"
             iconColor="black"
             id="delete"
+            onClick={onDelete}
+            data-testid="delete-button"
           >
-            <HiOutlineTrash role="button" onClick={onDelete} data-testid="delete-button" />
+            <HiOutlineTrash />
           </S.StyledIconButton>
         </S.Actions>
       </S.Card>

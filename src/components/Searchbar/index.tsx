@@ -8,7 +8,7 @@ import { IconButton } from "~/components/IconButton";
 import TextField from "~/components/TextField";
 import { useRegisters } from "~/context/RegistersContext";
 import * as S from "./styles";
-import { applyCpfMask, isValidCpf } from "../../utils";
+import { applyCpfMask, isValidCpf, onlyDigits } from "../../utils";
 
 export const SearchBar = () => {
   const history = useHistory();
@@ -28,7 +28,7 @@ export const SearchBar = () => {
     }
     timeoutRef.current = setTimeout(() => {
       if (cpf) {
-        fetchRegistrationsByCpf(cpf);
+        fetchRegistrationsByCpf(onlyDigits(cpf));
       } else {
         fetchAllRegistrations();
       }
@@ -51,7 +51,7 @@ export const SearchBar = () => {
   const validateCpf = (value: string) => {
     setCpfError('')
     if (value && isValidCpf(value)) {
-      handleFilterData(cpf)
+      handleFilterData(value)
     } else if (value && !isValidCpf(value)) {
       setCpfError('CPF inválido')
     } else {
@@ -78,8 +78,8 @@ export const SearchBar = () => {
         />
       </S.SearchInput>
       <S.Actions>
-        <IconButton aria-label="Recarregar lista de registros">
-          <HiRefresh onClick={clearFilter} />
+        <IconButton aria-label="Recarregar lista de registros" onClick={clearFilter} >
+          <HiRefresh />
         </IconButton>
         <Button onClick={goToNewAdmissionPage}>
           Nova Admissão

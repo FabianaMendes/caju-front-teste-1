@@ -135,4 +135,4 @@ function useRegisters(): IRegisterContext {
   return context
 }
 
-export { useRegisters, RegistersProvider }
+export { useRegisters, RegistersProvider, RegistersContext }

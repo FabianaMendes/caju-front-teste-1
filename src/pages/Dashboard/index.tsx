@@ -99,9 +99,9 @@ const DashboardPage = () => {
     <S.Container>
       <SearchBar />
       <S.CollumnsWrapper>
-        {fetchAllStatus.isLoading || fetchByCpfStatus.isLoading && (
+        {(fetchAllStatus.isLoading || fetchByCpfStatus.isLoading) ? (
           <S.ScreenLoader><Loader size="40px" /></S.ScreenLoader>
-        )}
+        ) : null}
         {allColumns.map((column) => (
           <Column
             status={column.status}
