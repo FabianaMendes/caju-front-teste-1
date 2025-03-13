@@ -10,9 +10,17 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 const TextField = ({label, error, id, ...props}: Props) => {
   return (
     <div>
-      <label htmlFor={id}>{label}</label>
-      <S.Input {...props} disabled={props.disabled} />
-      <S.Span>{error}</S.Span>
+      <label htmlFor={id}>
+        {label}  
+      </label>
+      <S.Input
+        disabled={props.disabled}
+        id={id}
+        aria-invalid={!!error}
+        aria-describedby={error || undefined}
+        {...props}
+      />
+      <S.Span id={error}>{error}</S.Span>
     </div>
   );
 };

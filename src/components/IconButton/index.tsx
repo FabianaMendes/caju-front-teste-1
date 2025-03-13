@@ -1,13 +1,25 @@
-import * as S from './styles.tsx'
+import { HTMLAttributes } from 'react';
+import * as S from './styles.tsx';
 
-type IconButtonProps = {
+interface IconButtonProps extends HTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode;
-} & React.HTMLAttributes<HTMLButtonElement>;
+  iconColor?: string;
+  borderColor?: string;
+}
 
-export const IconButton = (props: IconButtonProps) => {
+export const IconButton = ({
+  children,
+  iconColor,
+  borderColor,
+  ...props
+}: IconButtonProps) => {
   return (
-    <S.IconButton {...props}>
-      {props.children}
+    <S.IconButton
+      $iconColor={iconColor}
+      $borderColor={borderColor}
+      {...props}
+    >
+      {children}
     </S.IconButton>
   );
 };

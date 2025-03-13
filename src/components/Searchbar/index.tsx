@@ -19,7 +19,7 @@ export const SearchBar = () => {
   const {
     fetchAllRegistrations,
     fetchRegistrationsByCpf,
-    isFetchingByCpf
+    fetchByCpfStatus
   } = useRegisters();
 
   const debouncedSearch = useCallback((cpf: string) => {
@@ -72,16 +72,18 @@ export const SearchBar = () => {
         <TextField
           placeholder="Digite um CPF válido"
           onChange={handleChangeCpf}
-          disabled={isFetchingByCpf}
+          disabled={fetchByCpfStatus.isLoading}
           error={cpfError}
           value={cpf}
         />
       </S.SearchInput>
       <S.Actions>
-        <IconButton aria-label="refetch">
+        <IconButton aria-label="Recarregar lista de registros">
           <HiRefresh onClick={clearFilter} />
         </IconButton>
-        <Button onClick={goToNewAdmissionPage}>Nova Admissão</Button>
+        <Button onClick={goToNewAdmissionPage}>
+          Nova Admissão
+        </Button>
       </S.Actions>
     </S.Container>
   );

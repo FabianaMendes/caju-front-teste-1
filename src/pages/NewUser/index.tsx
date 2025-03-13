@@ -1,11 +1,13 @@
-import TextField from "~/components/TextField";
-import * as S from "./styles";
-import { HiOutlineArrowLeft } from "react-icons/hi";
-import { useHistory } from "react-router-dom";
-import routes from "~/router/routes";
-import { ChangeEvent, FormEvent, useState } from "react";
-import { applyCpfMask, emailValidationRegex, formatDate, fullNameValidationRegex, isValidCpf, onlyDigits } from "~/utils";
-import { Admission, Status } from "~/types/Admission";
+/* eslint-disable react-hooks/exhaustive-deps */
+import TextField from "~/components/TextField"
+import * as S from "./styles"
+import { HiOutlineArrowLeft } from "react-icons/hi"
+import { useHistory } from "react-router-dom"
+import routes from "~/router/routes"
+import { ChangeEvent, FormEvent, useEffect, useState } from "react"
+import { applyCpfMask, emailValidationRegex, formatDate, fullNameValidationRegex, isValidCpf, onlyDigits } from "~/utils"
+import { Admission, Status } from "~/types/Admission"
+import { useRegisters } from "~/context/RegistersContext"
 
 interface FormErrors {
   employeeName?: string;
@@ -17,39 +19,51 @@ interface FormErrors {
 
 const NewUserPage = () => {
   const history = useHistory();
-  const [errors, setErrors] = useState<FormErrors>({})
-  const [cpf, setCpf] = useState('')
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [cpf, setCpf] = useState('');
+  const {
+    addNewRegister,
+    addNewRegisterStatus,
+    resetStatus
+  } = useRegisters();
 
   const goToHome = () => {
-    history.push(routes.dashboard);
-  };
+    history.push(routes.dashboard)
+  }
 
   const validateName = (name: string) => {
-    let nameError = '';
-    if (!name) nameError = 'Nome obrigatório';
-    if (name && !fullNameValidationRegex.test(name)) nameError = 'Insira nome e sobrenome';
-    if (name && !isNaN(Number(name[0]))) nameError = 'O primeiro caractere do nome não pode ser um número';
-    setErrors((prevErrors) => ({ ...prevErrors, employeeName: nameError }));
+    let nameError = ''
+    if (!name) nameError = 'Nome obrigatório'
+    if (name && !fullNameValidationRegex.test(name)) nameError = 'Insira nome e sobrenome'
+    if (name && !isNaN(Number(name[0]))) nameError = 'O primeiro caractere do nome não pode ser um número'
+    setErrors((prevErrors) => ({ ...prevErrors, employeeName: nameError }))
   }
 
   const validateCpf = (cpf: string) => {
-    let cpfError = '';
-    if (!cpf) cpfError = 'CPF obrigatório';
-    if (cpf && !isValidCpf(cpf)) cpfError = 'CPF inválido';
-    setErrors((prevErrors) => ({ ...prevErrors, cpf: cpfError }));
+    let cpfError = ''
+    if (!cpf) cpfError = 'CPF obrigatório'
+    if (cpf && !isValidCpf(cpf)) cpfError = 'CPF inválido'
+    setErrors((prevErrors) => ({ ...prevErrors, cpf: cpfError }))
   }
 
   const validateEmail = (email: string) => {
-    let emailError = '';
-    if (!email) emailError = 'E-mail obrigatório';
-    if (email && !emailValidationRegex.test(email)) emailError = 'E-mail inválido';
-    setErrors((prevErrors) => ({ ...prevErrors, email: emailError }));
+    let emailError = ''
+    if (!email) emailError = 'E-mail obrigatório'
+    if (email && !emailValidationRegex.test(email)) emailError = 'E-mail inválido'
+    setErrors((prevErrors) => ({ ...prevErrors, email: emailError }))
+  }
+
+  const validateDate = (date: string) => {
+    let dateError = ''
+    if (!date) dateError = 'Data obrigatório'
+    setErrors((prevErrors) => ({ ...prevErrors, admissionDate: dateError }))
   }
 
   const validateFormData = (values: Admission) => {
-    validateName(values.employeeName);
-    validateCpf(values.cpf);
-    validateEmail(values.email);
+    validateName(values.employeeName)
+    validateCpf(values.cpf)
+    validateEmail(values.email)
+    validateDate(values.admissionDate)
   }
 
   const handleChangeCpf = (event: ChangeEvent<HTMLInputElement>) => {
@@ -68,12 +82,12 @@ const NewUserPage = () => {
   }
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    event.preventDefault()
     const form = event.target as HTMLFormElement
-    const employeeName = (form.elements.namedItem('employeeName') as HTMLInputElement).value;
-    const email = (form.elements.namedItem('email') as HTMLInputElement).value;
-    const cpf = (form.elements.namedItem('cpf') as HTMLInputElement).value;
-    const admissionDate = (form.elements.namedItem('admissionDate') as HTMLInputElement).value;
+    const employeeName = (form.elements.namedItem('employeeName') as HTMLInputElement).value
+    const email = (form.elements.namedItem('email') as HTMLInputElement).value
+    const cpf = (form.elements.namedItem('cpf') as HTMLInputElement).value
+    const admissionDate = (form.elements.namedItem('admissionDate') as HTMLInputElement).value
     const newRegister: Admission = {
       employeeName,
       email,
@@ -83,9 +97,16 @@ const NewUserPage = () => {
     }
     validateFormData(newRegister)
     if (!haveErrors() && !haveEmptyValues(newRegister)) {
-      console.log(newRegister)
+      addNewRegister(newRegister)
     }
   }
+
+  useEffect(() => {
+    if (addNewRegisterStatus.success) {
+      goToHome()
+      resetStatus()
+    }
+  }, [addNewRegisterStatus])
 
   return (
     <S.Container>
@@ -123,11 +144,13 @@ const NewUserPage = () => {
             name="admissionDate"
             error={errors.admissionDate}
           />
-          <S.StyledButton type="submit">Cadastrar</S.StyledButton>
+          <S.StyledButton type="submit" isSubmitting={addNewRegisterStatus.isLoading}>
+            Cadastrar
+          </S.StyledButton>
         </S.Form>
       </S.Card>
     </S.Container>
-  );
-};
+  )
+}
 
-export default NewUserPage;
+export default NewUserPage

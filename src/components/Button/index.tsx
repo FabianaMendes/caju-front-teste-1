@@ -1,13 +1,20 @@
 import { ButtonHTMLAttributes } from 'react';
 import * as S from './styles';
+import Loader from '../Loader';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode;
+  isSubmitting?: boolean
 }
 
-export const Button = ({children, ...props}: Props) => {
+export const Button = ({children, isSubmitting, ...props}: Props) => {
   return (
-    <S.Button {...props}>
+    <S.Button {...props} $isSubmitting={isSubmitting}>
+      {isSubmitting && (
+        <S.ButtonLoader>
+          <Loader color='#FFF'/>
+        </S.ButtonLoader>
+      )}
       {children}
     </S.Button>
   );

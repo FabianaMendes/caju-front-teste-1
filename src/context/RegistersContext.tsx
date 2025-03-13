@@ -1,17 +1,21 @@
 import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { deleteRegister, getRegistrations, searchRegisterByCpf, updateCard } from "~/services/api";
+import { createAdmission, deleteRegister, getRegistrations, searchRegisterByCpf, updateCard } from "~/services/api";
 import { Admission } from "~/types/Admission";
+import { initialRequestStatus, RequestStatus } from "~/types/Requests";
 
 interface IRegisterContext {
   registrations: Admission[];
-  isFetchingAll: boolean;
-  isFetchingByCpf: boolean;
+  fetchAllStatus: RequestStatus;
+  fetchByCpfStatus: RequestStatus;
   isUpdatingCard: string;
+  addNewRegisterStatus: RequestStatus;
   fetchAllRegistrations: () => void;
   fetchRegistrationsByCpf: (cpf: string) => void;
   updateCardStatus: (cardData: Admission) => void;
   deleteCard: (id: string) => void;
+  addNewRegister: (register: Admission) => void;
+  resetStatus: () => void;
 }
 
 const RegistersContext = createContext<IRegisterContext>({} as IRegisterContext)
@@ -23,66 +27,85 @@ interface Props {
 const RegistersProvider = ({
   children,
 }: Props) => {
-  const [registrations, setRegistrations] = useState<Admission[]>([])
-  const [isFetchingAll, setIsFetchingAll] = useState<boolean>(false)
-  const [isFetchingByCpf, setIsFetchingByCpf] = useState<boolean>(false)
-  const [isUpdatingCard, setIsUpdatingCard] = useState<string>('')
+  const [registrations, setRegistrations] = useState<Admission[]>([]);
+  const [fetchAllStatus, setFetchAllStatus] = useState<RequestStatus>(initialRequestStatus);
+  const [fetchByCpfStatus, setFetchByCpfStatus] = useState<RequestStatus>(initialRequestStatus);
+  const [isUpdatingCard, setIsUpdatingCard] = useState<string>('');
+  const [addNewRegisterStatus, setAddNewRegisterStatus] = useState<RequestStatus>(initialRequestStatus);
+
+  const resetStatus = () => {
+    setAddNewRegisterStatus(initialRequestStatus)
+    setFetchAllStatus(initialRequestStatus)
+    setFetchByCpfStatus(initialRequestStatus)
+  }
 
   const fetchAllRegistrations = async () => {
-    setIsFetchingAll(true);
+    setFetchAllStatus({ ...initialRequestStatus, isLoading: true })
     await getRegistrations()
       .then((response) => {
-        setRegistrations(response);
+        setRegistrations(response)
+        setFetchAllStatus({ ...initialRequestStatus, success: true })
       })
       .catch((error) => {
         toast.error(error)
-      })
-      .finally(() => {
-        setIsFetchingAll(false);
+        setFetchAllStatus({ ...initialRequestStatus, error: true })
       })
     }
   
   const fetchRegistrationsByCpf = async (cpf: string) => {
-    setIsFetchingByCpf(true);
+    setFetchByCpfStatus({ ...initialRequestStatus, isLoading: true })
     await searchRegisterByCpf(cpf)
     .then((response) => {
-      setRegistrations(response);
+      setRegistrations(response)
+      setFetchByCpfStatus({ ...initialRequestStatus, success: true })
     })
     .catch((error) => {
       toast.error(error)
-    })
-    .finally(() => {
-      setIsFetchingByCpf(false);
+      setFetchByCpfStatus({ ...initialRequestStatus, error: true })
     })
   }
 
   const updateCardStatus = async (cardData: Admission) => {
-    setIsUpdatingCard(cardData.id);
+    setIsUpdatingCard(cardData.id || '')
     await updateCard(cardData)
     .then(() => {
-      fetchAllRegistrations();
       toast.success(`Status de ${cardData.employeeName} atualizado com sucesso!`)
+      fetchAllRegistrations()
     })
     .catch((error) => {
       toast.error(error)
     })
     .finally(() => {
-      setIsUpdatingCard('');
+      setIsUpdatingCard('')
     })
   }
 
   const deleteCard = async (id: string) => {
-    setIsUpdatingCard(id);
+    setIsUpdatingCard(id)
     await deleteRegister(id)
     .then(() => {
-      fetchAllRegistrations();
       toast.success('Card deletado com sucesso!')
+      fetchAllRegistrations()
     })
     .catch((error) => {
       toast.error(error)
     })
     .finally(() => {
-      setIsUpdatingCard('');
+      setIsUpdatingCard('')
+    })
+  }
+
+  const addNewRegister = async (register: Admission) => {
+    setAddNewRegisterStatus({ ...initialRequestStatus, isLoading: true })
+    await createAdmission(register)
+    .then(() => {
+      fetchAllRegistrations()
+      toast.success('Registro adicionado com sucesso!')
+      setAddNewRegisterStatus({ ...initialRequestStatus, success: true })
+    })
+    .catch((error) => {
+      toast.error(error)
+      setAddNewRegisterStatus({ ...initialRequestStatus, error: true })
     })
   }
 
@@ -90,13 +113,16 @@ const RegistersProvider = ({
     <RegistersContext.Provider
       value={{
         registrations,
-        isFetchingAll,
-        isFetchingByCpf,
+        fetchAllStatus,
+        fetchByCpfStatus,
         isUpdatingCard,
+        addNewRegisterStatus,
         fetchAllRegistrations,
         fetchRegistrationsByCpf,
         updateCardStatus,
-        deleteCard
+        deleteCard,
+        addNewRegister,
+        resetStatus
       }}
     >
       {children}
@@ -109,4 +135,4 @@ function useRegisters(): IRegisterContext {
   return context
 }
 
-export { useRegisters, RegistersProvider };
+export { useRegisters, RegistersProvider }

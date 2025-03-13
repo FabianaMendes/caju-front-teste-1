@@ -13,6 +13,8 @@ export const ModalOverlay = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  z-index: 1;
 `
 
 export const Modal = styled.div`
@@ -22,6 +24,11 @@ export const Modal = styled.div`
   padding: 30px;
   background-color: #FFF;
   border-radius: 8px;
+  position: fixed;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `
 export const ModalTitle = styled.h3`
   margin-top: 0;

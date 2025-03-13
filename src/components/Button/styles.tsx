@@ -1,20 +1,29 @@
 import styled from "styled-components";
 
-export const Button = styled.button`
-  outline: none;
+interface ButtonProps {
+  $isSubmitting?: boolean
+}
+
+export const Button = styled.button<ButtonProps>`
   display: flex;
   align-items: center;
+  justify-content: center;
   border: none;
   border-radius: 36px;
   padding: 8px 32px;
   background-color: #64a98c;
   cursor: pointer;
   height: 56px;
-  color: #fff;
+  color: ${({ $isSubmitting }) => $isSubmitting ? 'transparent' : '#fff'};
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   font-size: 16px;
   font-weight: 600;
+  position: relative;
 `;
+
+export const ButtonLoader = styled.div`
+  position: absolute;
+`
 
 interface ButtonSmallProps {
   $bgColor?: string;
@@ -23,7 +32,6 @@ interface ButtonSmallProps {
 
 export const ButtonSmall = styled.button<ButtonSmallProps>`
   font-size: 12px;
-  outline: none;
   border-radius: 4px;
   border: none;
   padding: 4px 16px;

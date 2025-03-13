@@ -7,7 +7,7 @@ export const Container = styled.div`
   gap: 16px;
 `;
 
-export const SearchInput = styled.div`
+export const SearchInput = styled.section`
   width: 40%;
   height: 56px;
   padding-top: 10px;

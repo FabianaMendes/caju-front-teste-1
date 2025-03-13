@@ -1,6 +1,11 @@
 import styled from "styled-components";
+import { IconButton } from "../IconButton";
 
-export const Card = styled.div`
+interface CardProps {
+  $isLoading?: boolean;
+}
+
+export const Card = styled.div<CardProps>`
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -14,6 +19,7 @@ export const Card = styled.div`
     margin: 0;
   }
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  opacity: ${({ $isLoading }) => $isLoading ? 0.5 : 1};
 `;
 
 export const IconAndText = styled.div`
@@ -31,5 +37,11 @@ export const Actions = styled.div`
 
   svg {
     cursor: pointer;
+    height: 20px;
+    width: 20px;
   }
 `;
+
+export const StyledIconButton = styled(IconButton)`
+  padding: 0;
+`
