@@ -20,9 +20,20 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "esModuleInterop": true,
-    "types": ["node", "jest", "@testing-library/jest-dom"]
+    "types": [
+      "node",
+      "jest",
+      "@testing-library/jest-dom",
+      "cypress"
+    ]
   },
-  "include": ["src", "src/__test__/setupTests.ts"],
+  "include": [
+    "src",
+    "src/__test__/setupTests.ts",
+    "cypress",
+    "cypress/**/*.ts",
+    "cypress.config.ts"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }],
   "extends": "./tsconfig.paths.json"
 }

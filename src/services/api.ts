@@ -1,10 +1,6 @@
 import { Admission } from "~/types/Admission";
 
-/** Ideal é que fique no .env como variável de ambiente,
- * mas para o contexto deste teste, para facilitar, vamos
- * setar direto no código
- */
-const baseUrl = 'http://localhost:3000';
+const baseUrl = import.meta.env.VITE_API_URL;
 
 export const getRegistrations = async () => {
   try {

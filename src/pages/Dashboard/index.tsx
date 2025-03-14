@@ -112,6 +112,7 @@ const DashboardPage = () => {
               registration.status === column.status ? (
                 <RegistrationCard
                   key={registration.id}
+                  id={registration.id || ''}
                   isLoading={isUpdatingCard === registration.id}
                   title={registration.employeeName}
                   email={registration.email}

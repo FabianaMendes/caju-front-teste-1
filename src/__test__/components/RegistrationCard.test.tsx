@@ -5,6 +5,7 @@ import { Status } from '~/types/Admission'
 const title = 'Luciano Andrade'
 const email = 'luciano@gmail.com'
 const admissionDate = '02/01/2025'
+const id = 'card'
 
 describe('RegistrationCard Component', () => {
   const props = {
@@ -12,6 +13,7 @@ describe('RegistrationCard Component', () => {
     title,
     email,
     admissionDate,
+    id,
     status: Status.REVIEW,
     onReprove: jest.fn(),
     onApprove: jest.fn(),

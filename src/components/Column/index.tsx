@@ -9,7 +9,7 @@ interface Props {
 
 const Column = ({ status, title, children }: Props) => {
   return (
-    <S.Column $status={status} data-testid={`column-${status}`}>
+    <S.Column $status={status} data-testid={`column-${status}`} id={`column-${status}`}>
       <>
         <S.TitleColumn $status={status} data-testid={`column-title-${status}`}>
           {title}

@@ -14,6 +14,7 @@ interface Props {
   email: string;
   admissionDate: string;
   status: Status;
+  id: string;
   onReprove: () => void;
   onApprove: () => void;
   onReview: () => void;
@@ -26,6 +27,7 @@ const RegistrationCard = ({
   email,
   admissionDate,
   status,
+  id,
   onReprove,
   onApprove,
   onReview,
@@ -33,7 +35,12 @@ const RegistrationCard = ({
 }: Props) => {  
   return (
     <>
-      <S.Card $isLoading={isLoading} data-testid="registration-card">
+      <S.Card
+        $isLoading={isLoading}
+        data-testid="registration-card"
+        id={id}
+        className="card"
+      >
         <S.IconAndText>
           <HiOutlineUser />
           <h3>{title}</h3>

@@ -131,12 +131,20 @@ Aplicação http://localhost:3001/
 <br/>
 Json Web Server http://localhost:3000/
 
-Caso necessite executar a suíte de testes use o comando abaixo:
+Para concluir o desenvolvimento faça as edições necessárias e depois envie a URL do novo repositório com suas alterações para o RH.
+
+## Testes
+
+# Cypress
+Para rodar os testes com cypress basta rodar o comando abaixo:
+
+```shell
+yarn test:e2e
+```
+
+# Jest
+Para executar a suíte de testes use o comando abaixo:
 
 ```shell
 yarn test:dev
 ```
-
-
-Para concluir o desenvolvimento faça as edições necessárias e depois envie a URL do novo repositório com suas alterações para o RH.
-
