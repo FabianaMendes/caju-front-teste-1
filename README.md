@@ -1,7 +1,7 @@
 
 # Caju Front End Teste
 
-Esse é um desafio técnico para você demonstrar suas habilidades como frontend, sua missão será dar continuidade ao desenvolvimento da plataforma de admissão que consiste em duas telas, a tela de `Dashboard` e uma tela de `Cadastro`.
+Este é um desafio técnico proposto pela Caju para demonstrar habilidades como frontend. A proposta era dar continuidade ao desenvolvimento da plataforma de admissão, que consiste em duas telas, a tela de `Dashboard` e uma tela de `Cadastro`.
 
 O `Dashboard` mostra todas as admissões criadas, com as opções de aprovar, reprovar e excluir.
 
@@ -17,8 +17,9 @@ A tela de `Cadastro` exibe um formulário simples que será utilizado para criar
 
 ## Apresentanção do problema
 
-O desafio é aprimorar o código existente e implementar as funcionalidades que estão incompletas, use a sua experiência para identificar e propor soluções para os problemas encontrados.
-Sinta-se a vontade para refatorar, criar novas pastas, componentes, hooks, utils e o que mais achar necessário para garantir que o projeto esteja organizado e segue as boas práticas de desenvolvimento.
+
+O desafio era aprimorar o código existente e implementar as funcionalidades que estavam incompletas, usando a experiência prévia para identificar e propor soluções para os problemas encontrados.
+Permitido refatorar, criar novas pastas, componentes, hooks, utils e o que mais for necessário para garantir que o projeto esteja organizado e segue as boas práticas de desenvolvimento.
 
 
 ## Especificações
@@ -50,7 +51,7 @@ Sinta-se a vontade para refatorar, criar novas pastas, componentes, hooks, utils
 
 
 ## API
-Você consumirá uma API mockada localmente, que será executada utilizando o json-server. Para mais informações consulte a [documentação](https://github.com/typicode/json-server/).
+Inicialmente era consumido uma API mockada localmente, executada utilizando o json-server. Para mais informações consulte a [documentação](https://github.com/typicode/json-server/).
 
 Exemplo de Requisição:
 
@@ -66,7 +67,7 @@ Content-Type: application/json
 }
 ```
 
-Para realizar a pesquisa por CPF, utilize essa funcionalidade do json-web-server:
+Para realizar a pesquisa por CPF, foi utilizada essa funcionalidade do json-web-server:
 <br/>
 https://github.com/typicode/json-server/tree/v0?tab=readme-ov-file#filter
 
@@ -86,7 +87,7 @@ https://github.com/typicode/json-server/tree/v0?tab=readme-ov-file#filter
 - Utilize conceitos (SOLID, DRY, KISS, Clean code) e design patterns
 - Crie testes coesos e que garantam o bom funcionamento da aplicação
 
-### Sua performance será avaliada com base nos seguintes pontos:
+### Performance avaliada com base nos seguintes pontos:
 
 - A aplicação funciona conforme o esperado seguindo todas as especificações
 - O código é claro e de fácil entendimento
@@ -96,8 +97,6 @@ https://github.com/typicode/json-server/tree/v0?tab=readme-ov-file#filter
 - Boas práticas de desenvolvimento
 - Proeficiência com automação de testes. Não exigimos 100% de cobertura
 - Senso crítico e analítico
-
-`Nos surpreenda demonstrando toda a sua habilidade e conhecimento.`
 
 ## Iniciando o desenvolvimento
 
@@ -131,8 +130,6 @@ Aplicação http://localhost:3001/
 <br/>
 Json Web Server http://localhost:3000/
 
-Para concluir o desenvolvimento faça as edições necessárias e depois envie a URL do novo repositório com suas alterações para o RH.
-
 ## Testes
 
 # Cypress
@@ -153,6 +150,7 @@ yarn test:dev
 O JSON Web Server foi hospedado no [Render](https://render.com/)
 
 O front foi hospedado no [Vercel]()
+`Endereço do app:`
 [https://caju-front-teste-1-fabianamendes.vercel.app/](https://caju-front-teste-1-fabianamendes.vercel.app/)
 
 O CI/CD foi configurado com [Circle CI](https://circleci.com/)
