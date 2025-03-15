@@ -56,10 +56,10 @@ jobs:
           name: Instalar dependências
           command: yarn install
       - run:
-          name: Instalar dependências do sistema (Xvfb e libnss3)
+          name: Instalar dependências do sistema (Linux prerequisites)
           command: |
             sudo apt-get update
-            sudo apt-get install -y xvfb libnss3
+            sudo apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth xvfb
       - run:
           name: Instalar Jest JUnit
           command: yarn add jest-junit --ignore-workspace-root-check
