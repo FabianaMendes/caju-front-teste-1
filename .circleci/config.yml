@@ -25,8 +25,14 @@ jobs:
           name: Rodar testes unitários
           command: yarn run jest --verbose --no-cache
       - run:
+          name: Iniciar banco de dados
+          command: yarn init:db --port 3000
+      - run:
+          name: Iniciar aplicação
+          command: yarn run vite --port 3001
+      - run:
           name: Rodar testes E2E
-          command: yarn test:e2e
+          command: yarn cy:run --headless
       - store_test_results:
           path: ./test-results/
   build-node:
