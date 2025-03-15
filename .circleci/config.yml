@@ -55,9 +55,12 @@ jobs:
 
   cypress-test:
     docker:
-      - image: cypress/included:10.0.0
+      - image: cimg/node:18.17.0
     steps:
       - checkout
+      - run:
+          name: Instalar dependências
+          command: yarn install
       - run:
           name: Rodar testes E2E com Cypress
           command: yarn cy:run --headless
