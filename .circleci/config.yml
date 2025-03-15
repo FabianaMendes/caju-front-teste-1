@@ -18,7 +18,7 @@ jobs:
           command: yarn lint
       - run:
           name: Rodar testes unitários
-          command: yarn test:dev
+          command: yarn run jest --verbose --no-cache
       - run:
           name: Rodar testes E2E
           command: yarn test:e2e
