@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes } from 'react';
 import * as S from './styles';
 import Loader from '../Loader';
 
-interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode;
   isSubmitting?: boolean
 }
@@ -20,7 +20,7 @@ export const Button = ({children, isSubmitting, ...props}: Props) => {
   );
 }
 
-interface IButtonSmall extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface IButtonSmall extends ButtonHTMLAttributes<HTMLButtonElement> {
   bgColor?: string;
   color?: string;
   children?: React.ReactNode

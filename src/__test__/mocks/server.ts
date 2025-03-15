@@ -5,14 +5,14 @@ import { fakeAdmission } from "./fakeEntities";
 export const baseUrl = 'http://localhost:3000';
 
 export const handlers = [
-  rest.get(`${baseUrl}/registrations`, (req, res, ctx) => {
+  rest.get(`${baseUrl}/registrations`, (_req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json([fakeAdmission])
     );
   }),
 
-  rest.post(`${baseUrl}/registrations`, async (req, res, ctx) => {
+  rest.post(`${baseUrl}/registrations`, async (_req, res, ctx) => {
     return res(ctx.status(201), ctx.json({ message: "Created" }));
   }),
   
@@ -24,11 +24,11 @@ export const handlers = [
     return res(ctx.status(404), ctx.json({ message: "Registro não encontrado" }));
   }),
 
-  rest.put(`${baseUrl}/registrations/:id`, async (req, res, ctx) => {
+  rest.put(`${baseUrl}/registrations/:id`, async (_req, res, ctx) => {
     return res(ctx.status(200), ctx.json({ message: "Updated" }));
   }),
 
-  rest.delete(`${baseUrl}/registrations/:id`, async (req, res, ctx) => {
+  rest.delete(`${baseUrl}/registrations/:id`, async (_req, res, ctx) => {
     return res(ctx.status(200), ctx.json({ message: "Deleted" }));
   }),
 ];

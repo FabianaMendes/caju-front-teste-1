@@ -1,7 +1,7 @@
 import { HTMLAttributes } from 'react';
 import * as S from './styles.tsx';
 
-interface IconButtonProps extends HTMLAttributes<HTMLButtonElement> {
+export interface IconButtonProps extends HTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode;
   iconColor?: string;
   borderColor?: string;

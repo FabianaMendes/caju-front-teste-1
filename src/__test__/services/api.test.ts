@@ -44,7 +44,7 @@ describe("API Tests", () => {
   test("getRegistrations deve lançar erro quando a API falha", async () => {
     (getRegistrations as jest.Mock).mockRejectedValue(new Error("Falha ao buscar registros"));
     server.use(
-      rest.get(`${baseUrl}/registrations`, (req, res, ctx) => {
+      rest.get(`${baseUrl}/registrations`, (_req, res, ctx) => {
         return res(ctx.status(500));
       })
     );
@@ -62,7 +62,7 @@ describe("API Tests", () => {
 
   test("createAdmission deve lançar erro quando a API falha", async () => {
     server.use(
-      rest.post(`${baseUrl}/registrations`, (req, res, ctx) => {
+      rest.post(`${baseUrl}/registrations`, (_req, res, ctx) => {
         return res(ctx.status(500));
       })
     );
@@ -92,7 +92,7 @@ describe("API Tests", () => {
 
   test("deleteRegister deve lançar erro quando a API falha", async () => {
     server.use(
-      rest.delete(`${baseUrl}/registrations/:id`, (req, res, ctx) => {
+      rest.delete(`${baseUrl}/registrations/:id`, (_req, res, ctx) => {
         return res(ctx.status(500));
       })
     );
