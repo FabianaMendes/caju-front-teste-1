@@ -7,6 +7,6 @@ export default defineConfig({
     baseUrl: 'http://localhost:3001',
   },
   env: {
-    API_URL: process.env.VITE_API_URL
+    API_URL: process.env.VITE_API_URL_LOCAL
   }
 })

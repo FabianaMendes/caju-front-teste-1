@@ -148,3 +148,11 @@ Para executar a suíte de testes use o comando abaixo:
 ```shell
 yarn test:dev
 ```
+
+## CI/CD
+O JSON Web Server foi hospedado no [Render](https://render.com/)
+
+O front foi hospedado no [Vercel]()
+[https://caju-front-teste-1-fabianamendes.vercel.app/](https://caju-front-teste-1-fabianamendes.vercel.app/)
+
+O CI/CD foi configurado com [Circle CI](https://circleci.com/)

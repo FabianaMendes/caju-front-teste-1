@@ -1,6 +1,9 @@
 import { Admission } from "~/types/Admission";
+import { isProductionEnv } from "~/utils";
 
-const baseUrl = import.meta.env.VITE_API_URL;
+const baseUrl = isProductionEnv()
+  ? import.meta.env.VITE_API_URL
+  : import.meta.env.VITE_API_URL_LOCAL;
 
 export const getRegistrations = async () => {
   try {
