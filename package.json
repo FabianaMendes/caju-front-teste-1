@@ -28,6 +28,11 @@
     "react-toastify": "^11.0.5",
     "styled-components": "^6.1.11"
   },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn lint && yarn test:dev"
+    }
+  },
   "devDependencies": {
     "@nabla/vite-plugin-eslint": "^2.0.4",
     "@testing-library/dom": "^10.4.0",
