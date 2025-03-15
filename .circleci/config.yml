@@ -1,6 +1,8 @@
 version: 2.1
 orbs:
   node: circleci/node@5
+  cypress: cypress-io/cypress@3.3.0
+
 jobs:
   test-node:
     executor: node/default
@@ -24,22 +26,7 @@ jobs:
       - run:
           name: Rodar testes unitários
           command: yarn run jest --verbose --no-cache
-      - run:
-          name: Iniciar banco de dados
-          command: nohup yarn init:db --port 3000 &
-      - run:
-          name: Iniciar aplicação
-          command: nohup yarn run vite --port 3001 &
-      - run:
-          name: Rodar testes E2E
-          command: yarn cy:run --headless
-      - store_test_results:
-          path: ./test-results/
-      - run:
-          name: Parar processos de servidor e banco de dados
-          command: |
-            kill $(lsof -t -i:3000)  # Fecha o processo do DB (porta 3000)
-            kill $(lsof -t -i:3001)  # Fecha o processo do Vite (porta 3001)
+          
   build-node:
     executor: node/default
     steps:
@@ -52,6 +39,7 @@ jobs:
       - store_artifacts:
           path: dist
           destination: node-build
+          
   deploy:
     docker:
       - image: cimg/node:18.16.1
@@ -66,6 +54,16 @@ jobs:
       - run:
           name: Fazer Deploy no Vercel
           command: vercel --prod --token $VERCEL_TOKEN
+
+  cypress-test:
+    docker:
+      - image: cypress/included:10.0.0
+    steps:
+      - checkout
+      - run:
+          name: Rodar testes E2E com Cypress
+          command: yarn cy:run --headless
+          
 workflows:
   build-and-test-and-deploy:
     jobs:
@@ -76,6 +74,6 @@ workflows:
       - deploy:
           requires:
             - build-node
-          filters:
-            branches:
-              only: main
+      - cypress-test:
+          requires:
+            - deploy

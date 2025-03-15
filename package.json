@@ -11,6 +11,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "cy:open": "cypress open",
+    "cy:open-local": "concurrently --kill-others --success first \"yarn init:db --port 3000\" \"yarn run vite --port 3001\" \"wait-on http://localhost:3000 && yarn cy:open\"",
     "cy:run": "cypress run",
     "test:e2e": "concurrently --kill-others --success first \"yarn init:db --port 3000\" \"yarn run vite --port 3001\" \"wait-on http://localhost:3000 && yarn cy:run --headless\""
   },

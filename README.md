@@ -136,6 +136,11 @@ Json Web Server http://localhost:3000/
 Para rodar os testes com cypress basta rodar o comando abaixo:
 
 ```shell
+yarn cy:run
+```
+
+Se quiser testar as modificações locais:
+```shell
 yarn test:e2e
 ```
 

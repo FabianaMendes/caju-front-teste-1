@@ -4,7 +4,6 @@ import { RegistersProvider } from "./context/RegistersContext";
 import { ToastContainer } from "react-toastify";
 
 function App() {
-  console.log(process.env.NODE_ENV, import.meta.env.NODE_ENV)
   return (
     <>
       <Header text="Caju Front Teste" />

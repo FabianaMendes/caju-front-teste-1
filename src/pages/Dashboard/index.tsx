@@ -108,11 +108,11 @@ const DashboardPage = () => {
             key={column.title}
             title={column.title}
           >
-            {registrations && registrations?.map((registration: Admission) => (
+            {registrations && registrations?.map((registration: Admission, index: number) => (
               registration.status === column.status ? (
                 <RegistrationCard
                   key={registration.id}
-                  id={registration.id || ''}
+                  id={`${registration.id}-${index}` || ''}
                   isLoading={isUpdatingCard === registration.id}
                   title={registration.employeeName}
                   email={registration.email}

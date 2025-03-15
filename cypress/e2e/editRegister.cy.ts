@@ -16,7 +16,7 @@ describe('Edit admission', () => {
       .then((cardId) => {
         cy.wrap(cardId).as('selectedCard')
     
-        cy.get(`#${cardId}`)
+        cy.get(`.card#${cardId}`)
           .find('button')
           .contains('Aprovar')
           .click()
@@ -24,8 +24,9 @@ describe('Edit admission', () => {
         cy.get('button').contains('Confirmar').click()
         cy.wait('@editStatus')
         cy.wait('@getRegistrations')
+        cy.wait(200)
     
-        cy.get(`#${cardId}`)
+        cy.get(`.card#${cardId}`)
           .find('button')
           .contains('Revisar novamente')
           .click()
@@ -34,7 +35,7 @@ describe('Edit admission', () => {
         cy.wait('@editStatus')
         cy.wait('@getRegistrations')
     
-        cy.get(`#${cardId}`)
+        cy.get(`.card#${cardId}`)
           .find('button')
           .contains('Reprovar')
           .click()
@@ -43,7 +44,7 @@ describe('Edit admission', () => {
         cy.wait('@editStatus')
         cy.wait('@getRegistrations')
         
-        cy.get(`#${cardId}`)
+        cy.get(`.card#${cardId}`)
           .find('button')
           .contains('Revisar novamente')
           .click()
