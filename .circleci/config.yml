@@ -26,7 +26,7 @@ jobs:
       - run:
           name: Rodar testes unitários
           command: yarn run jest --verbose --no-cache
-          
+
   build-node:
     executor: node/default
     steps:
@@ -50,7 +50,7 @@ jobs:
           command: yarn global add vercel
       - run:
           name: Fazer Deploy no Vercel
-          command: vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
+          command: vercel deploy --prod --token=$VERCEL_TOKEN
 
 
   cypress-test:
