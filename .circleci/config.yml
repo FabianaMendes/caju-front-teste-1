@@ -47,7 +47,7 @@ jobs:
       - checkout
       - run:
           name: Instalar Vercel CLI
-          command: npm install --global vercel@latest
+          command: yarn global add vercel
       - run:
           name: Fazer Deploy no Vercel
           command: vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
