@@ -12,7 +12,7 @@
     "preview": "vite preview",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
-    "test:e2e": "concurrently --kill-others --success first \"yarn init:db --port 3000\" \"yarn run vite --port 3001\" \"wait-on http://localhost:3000 && yarn cy:run\""
+    "test:e2e": "concurrently --kill-others --success first \"yarn init:db --port 3000\" \"yarn run vite --port 3001\" \"wait-on http://localhost:3000 && yarn cy:run --headless\""
   },
   "dependencies": {
     "@testing-library/react": "^16.2.0",
