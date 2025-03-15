@@ -47,10 +47,10 @@ jobs:
       - checkout
       - run:
           name: Instalar Vercel CLI
-          command: yarn global add vercel
+          command: npm install --global vercel@latest
       - run:
           name: Fazer Deploy no Vercel
-          command: vercel --confirm --no-telemetry --prod --token $VERCEL_TOKEN
+          command: vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
 
 
   cypress-test:
