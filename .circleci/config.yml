@@ -13,14 +13,6 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn
       - run:
-          name: Instalar dependências do sistema (Xvfb)
-          command: |
-            sudo apt-get update
-            sudo apt-get install -y xvfb
-      - run:
-          name: Instalar Jest JUnit
-          command: yarn add jest-junit --ignore-workspace-root-check
-      - run:
           name: Rodar lint
           command: yarn lint
       - run:
@@ -58,9 +50,19 @@ jobs:
       - image: cimg/node:18.18.0
     steps:
       - checkout
+      - node/install-packages:
+          pkg-manager: yarn
       - run:
           name: Instalar dependências
           command: yarn install
+      - run:
+          name: Instalar dependências do sistema (Xvfb)
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y xvfb
+      - run:
+          name: Instalar Jest JUnit
+          command: yarn add jest-junit --ignore-workspace-root-check
       - run:
           name: Rodar testes E2E com Cypress
           command: yarn cy:run --headless
