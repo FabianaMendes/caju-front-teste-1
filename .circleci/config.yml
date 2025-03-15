@@ -50,7 +50,8 @@ jobs:
           command: yarn global add vercel
       - run:
           name: Fazer Deploy no Vercel
-          command: vercel --prod --token $VERCEL_TOKEN
+          command: vercel --confirm --no-telemetry --prod --token $VERCEL_TOKEN
+
 
   cypress-test:
     docker:
