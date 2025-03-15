@@ -80,4 +80,3 @@ workflows:
       - cypress-test:
           requires:
             - deploy
-          cypress-command: yarn cy:run
