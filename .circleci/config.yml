@@ -26,15 +26,20 @@ jobs:
           command: yarn run jest --verbose --no-cache
       - run:
           name: Iniciar banco de dados
-          command: yarn init:db --port 3000
+          command: nohup yarn init:db --port 3000 &
       - run:
           name: Iniciar aplicação
-          command: yarn run vite --port 3001
+          command: nohup yarn run vite --port 3001 &
       - run:
           name: Rodar testes E2E
           command: yarn cy:run --headless
       - store_test_results:
           path: ./test-results/
+      - run:
+          name: Parar processos de servidor e banco de dados
+          command: |
+            kill $(lsof -t -i:3000)  # Fecha o processo do DB (porta 3000)
+            kill $(lsof -t -i:3001)  # Fecha o processo do Vite (porta 3001)
   build-node:
     executor: node/default
     steps:
