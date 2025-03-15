@@ -12,6 +12,8 @@ type MockRegisterContext = {
   resetStatus: jest.Mock;
 }
 
+jest.mock("../../services/api", () => require("../mocks/api"))
+
 jest.mock("react-router-dom", () => {
   const actual = jest.requireActual("react-router-dom");
   return {

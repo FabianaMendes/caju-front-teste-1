@@ -2,7 +2,7 @@ import { setupServer } from "msw/node";
 import { rest } from "msw";
 import { fakeAdmission } from "./fakeEntities";
 
-export const baseUrl = import.meta.env.VITE_API_URL;
+export const baseUrl = 'http://localhost:3000';
 
 export const handlers = [
   rest.get(`${baseUrl}/registrations`, (req, res, ctx) => {

@@ -7,7 +7,7 @@ import routes from '~/router/routes';
 import { Status } from '~/types/Admission';
 import { initialRequestStatus } from '~/types/Requests';
 
-jest.mock('~/services/api')
+jest.mock("../../services/api", () => require("../mocks/api"))
 
 jest.mock('react-router-dom', () => {
   const actual = jest.requireActual('react-router-dom')

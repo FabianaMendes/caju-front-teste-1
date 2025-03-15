@@ -5,6 +5,8 @@ import routes from '~/router/routes'
 import { SearchBar } from '~/components/Searchbar'
 import { act } from 'react'
 
+jest.mock("../../services/api", () => require("../mocks/api"))
+
 jest.mock('react-router-dom', () => {
   const actual = jest.requireActual('react-router-dom');
   return {

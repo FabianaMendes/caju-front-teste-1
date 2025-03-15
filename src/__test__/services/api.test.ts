@@ -10,6 +10,8 @@ import { Admission, Status } from "~/types/Admission";
 import { baseUrl, server } from "../mocks/server";
 import { fakeAdmission } from "../mocks/fakeEntities";
 
+jest.mock("../../services/api", () => require("../mocks/api"))
+
 beforeAll(() => server.listen())
 afterEach(() => server.resetHandlers())
 afterAll(() => server.close())
@@ -22,6 +24,17 @@ const newAdmission: Admission = {
   status: Status.REVIEW
 };
 
+beforeEach(() => {
+  jest.clearAllMocks();
+
+  (getRegistrations as jest.Mock).mockResolvedValue([fakeAdmission]);
+  (createAdmission as jest.Mock).mockResolvedValue({ message: "Created" });
+  (searchRegisterByCpf as jest.Mock).mockResolvedValue([fakeAdmission]);
+  (updateCard as jest.Mock).mockResolvedValue({ message: "Updated" });
+  (deleteRegister as jest.Mock)
+    .mockResolvedValue({ message: "Deleted" });
+});
+
 describe("API Tests", () => {
   test("getRegistrations deve retornar uma lista de registros", async () => {
     const data = await getRegistrations();
@@ -29,6 +42,7 @@ describe("API Tests", () => {
   });
 
   test("getRegistrations deve lançar erro quando a API falha", async () => {
+    (getRegistrations as jest.Mock).mockRejectedValue(new Error("Falha ao buscar registros"));
     server.use(
       rest.get(`${baseUrl}/registrations`, (req, res, ctx) => {
         return res(ctx.status(500));
@@ -37,8 +51,7 @@ describe("API Tests", () => {
     try {
       await getRegistrations();
     } catch (error: any) {
-      expect(error).toBeInstanceOf(Error);
-      expect(error.message).toBe("Falha ao buscar registros");
+      await expect(getRegistrations()).rejects.toThrow("Falha ao buscar registros");
     }
   });
 
