@@ -56,16 +56,16 @@ jobs:
           name: Instalar dependências
           command: yarn install
       - run:
-          name: Instalar dependências do sistema (Xvfb)
+          name: Instalar dependências do sistema (Xvfb e libnss3)
           command: |
             sudo apt-get update
-            sudo apt-get install -y xvfb
+            sudo apt-get install -y xvfb libnss3
       - run:
           name: Instalar Jest JUnit
           command: yarn add jest-junit --ignore-workspace-root-check
       - run:
           name: Rodar testes E2E com Cypress
-          command: yarn cy:run --headless
+          command: yarn cy:run
           
 workflows:
   build-and-test-and-deploy:
@@ -80,3 +80,4 @@ workflows:
       - cypress-test:
           requires:
             - deploy
+          cypress-command: yarn cy:run
