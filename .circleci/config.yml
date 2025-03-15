@@ -55,7 +55,7 @@ jobs:
 
   cypress-test:
     docker:
-      - image: cimg/node:18.17.0
+      - image: cimg/node:18.18.0
     steps:
       - checkout
       - run:
