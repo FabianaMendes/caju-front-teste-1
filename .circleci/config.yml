@@ -49,9 +49,6 @@ jobs:
           name: Instalar Vercel CLI
           command: yarn global add vercel
       - run:
-          name: Autenticar Vercel
-          command: vercel login --token $VERCEL_TOKEN
-      - run:
           name: Fazer Deploy no Vercel
           command: vercel --prod --token $VERCEL_TOKEN
 
