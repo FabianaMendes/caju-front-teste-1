@@ -20,7 +20,9 @@ export const ModalOverlay = styled.div`
 export const Modal = styled.div`
   height: fit-content;
   max-height: 80vh;
-  width: 50vw;
+  height: fit-content;
+  min-width: fit-content;
+  max-width: 90vw;
   padding: 30px;
   background-color: #FFF;
   border-radius: 8px;

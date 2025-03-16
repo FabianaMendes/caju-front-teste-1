@@ -18,11 +18,11 @@ const registrationStatusStyles: {
 };
 
 export const Column = styled.div<{ $status: any }>`
-  height: auto;
   background-color: ${({ $status }) =>
     registrationStatusStyles[$status].background};
   border-radius: 32px;
-  min-height: fit-content;
+  height: fit-content;
+  min-height: 200px;
   @media (min-width: 820px) {
     overflow-y: auto;
     min-height: 80vh;
