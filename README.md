@@ -154,7 +154,10 @@ yarn test:dev
 ## CI/CD
 O JSON Web Server foi hospedado no [Render](https://render.com/)
 
+*Obs: Infelizmente o Render mostrou ter uma péssima performance no primeiro acesso. Com certeza vale a troca, mas devido ao tempo limitado para entrega do teste vou deixar como está, entendendo que o objetivo seria avaliar as capacidades técnicas de configuração da pipe. Embora esse ponto tenha prejudicado muito a performance no primeiro acesso, essa é uma limitação da ferramenta gratuita escolhida e pode ser resolvida facilmente com uma troca de hospedagem.
+
 O front foi hospedado no [Vercel]()
+
 `Endereço do app:`
 [https://caju-front-teste-1-fabianamendes.vercel.app/](https://caju-front-teste-1-fabianamendes.vercel.app/)
 

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { IconButton } from "../IconButton";
+import { ButtonSmall } from "../Button";
 
 interface CardProps {
   $isLoading?: boolean;
@@ -31,7 +32,7 @@ export const IconAndText = styled.div`
 export const Actions = styled.div`
   margin-top: 8px;
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
   gap: 4px;
 
@@ -40,8 +41,21 @@ export const Actions = styled.div`
     height: 20px;
     width: 20px;
   }
+
+  @media (min-width: 820px) {
+    justify-content: space-between;
+  }
 `;
 
 export const StyledIconButton = styled(IconButton)`
   padding: 0;
+  margin-left: auto;
+`
+
+export const StyledButtonSmall = styled(ButtonSmall)`
+  width: 100%;
+  max-width: 200px;
+  @media (min-width: 820px) {
+    max-width: 140px;
+  }
 `

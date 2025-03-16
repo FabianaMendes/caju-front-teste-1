@@ -3,7 +3,7 @@ import { ChangeEvent, useCallback, useRef, useState } from "react";
 import { HiRefresh } from "react-icons/hi";
 import { useHistory } from "react-router-dom";
 import routes from "~/router/routes";
-import { Button } from "~/components/Button";
+import { IoIosAdd } from "react-icons/io";
 import { IconButton } from "~/components/IconButton";
 import TextField from "~/components/TextField";
 import { useRegisters } from "~/context/RegistersContext";
@@ -81,9 +81,12 @@ export const SearchBar = () => {
         <IconButton aria-label="Recarregar lista de registros" onClick={clearFilter} >
           <HiRefresh />
         </IconButton>
-        <Button onClick={goToNewAdmissionPage}>
+        <S.DesktopButton onClick={goToNewAdmissionPage}>
           Nova Admissão
-        </Button>
+        </S.DesktopButton>
+        <S.MobileButton aria-label="Nova Admissão" onClick={goToNewAdmissionPage} padding="8px">
+          <IoIosAdd size={40}/>
+        </S.MobileButton>
       </S.Actions>
     </S.Container>
   );

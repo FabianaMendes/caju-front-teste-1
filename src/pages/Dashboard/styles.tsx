@@ -4,15 +4,21 @@ export const Container = styled.div`
   padding: 24px;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  max-height: calc(100vh - 64px);
+  margin-top: 64px;
 `;
 
 export const CollumnsWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-gap: 24px;
   justify-content: center;
   margin-top: 24px;
   position: relative;
+  @media (min-width: 820px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 `;
 
 export const ScreenLoader = styled.div`

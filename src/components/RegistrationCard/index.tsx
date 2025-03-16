@@ -1,4 +1,3 @@
-import { ButtonSmall } from "~/components/Button";
 import * as S from "./styles";
 import {
   HiOutlineMail,
@@ -56,7 +55,7 @@ const RegistrationCard = ({
         <S.Actions>
           {status === Status.REVIEW && (
             <>
-              <ButtonSmall
+              <S.StyledButtonSmall
                 bgColor="rgb(255, 145, 154)"
                 onClick={onReprove}
                 disabled={isLoading}
@@ -64,8 +63,8 @@ const RegistrationCard = ({
                 data-testid="reprove-button"
               >
                 Reprovar
-              </ButtonSmall>
-              <ButtonSmall
+              </S.StyledButtonSmall>
+              <S.StyledButtonSmall
                 bgColor="rgb(155, 229, 155)"
                 onClick={onApprove}
                 disabled={isLoading}
@@ -73,11 +72,11 @@ const RegistrationCard = ({
                 data-testid="approve-button"
               >
                 Aprovar
-              </ButtonSmall>
+              </S.StyledButtonSmall>
             </>
           )}
           {status !== Status.REVIEW && (
-            <ButtonSmall
+            <S.StyledButtonSmall
               bgColor="#ff8858"
               onClick={onReview}
               disabled={isLoading}
@@ -85,7 +84,7 @@ const RegistrationCard = ({
               data-testid="review-button"
             >
               Revisar novamente
-            </ButtonSmall>
+            </S.StyledButtonSmall>
           )}
           <S.StyledIconButton
             borderColor="transparent"

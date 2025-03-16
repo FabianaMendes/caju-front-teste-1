@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Button } from "../Button";
 
 export const Container = styled.div`
   display: flex;
@@ -19,3 +20,16 @@ export const Actions = styled.div`
   align-items: center;
   gap: 16px;
 `;
+
+export const DesktopButton = styled(Button)`
+  display: none;
+  @media (min-width: 820px) {
+    display: flex;
+  }
+`
+
+export const MobileButton = styled(Button)`
+  @media (min-width: 820px) {
+    display: none;
+  }
+`

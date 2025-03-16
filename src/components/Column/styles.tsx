@@ -22,8 +22,12 @@ export const Column = styled.div<{ $status: any }>`
   background-color: ${({ $status }) =>
     registrationStatusStyles[$status].background};
   border-radius: 32px;
-  min-height: 80vh;
-  max-height: 80vh;
+  min-height: fit-content;
+  @media (min-width: 820px) {
+    overflow-y: auto;
+    min-height: 80vh;
+    max-height: 80vh;
+  }
 `;
 
 export const TitleColumn = styled.h3<{ $status: any }>`
@@ -33,6 +37,11 @@ export const TitleColumn = styled.h3<{ $status: any }>`
 `;
 
 export const CollumContent = styled.div`
-  overflow: auto;
   max-height: 85%;
+  height: fit-content;
+
+  @media (min-width: 820px) {
+    grid-template-columns: 1fr 1fr 1fr;
+    overflow: auto;
+  }
 `;

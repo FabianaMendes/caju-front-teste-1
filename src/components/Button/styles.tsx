@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 interface ButtonProps {
   $isSubmitting?: boolean
+  $padding?: string
 }
 
 export const Button = styled.button<ButtonProps>`
@@ -10,7 +11,7 @@ export const Button = styled.button<ButtonProps>`
   justify-content: center;
   border: none;
   border-radius: 36px;
-  padding: 8px 32px;
+  padding: ${({ $padding }) => $padding ?? '8px 32px'};
   background-color: #64a98c;
   cursor: pointer;
   height: 56px;

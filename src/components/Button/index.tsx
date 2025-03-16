@@ -5,11 +5,12 @@ import Loader from '../Loader';
 export interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode;
   isSubmitting?: boolean
+  padding?: string
 }
 
-export const Button = ({children, isSubmitting, ...props}: Props) => {
+export const Button = ({children, isSubmitting, padding, ...props}: Props) => {
   return (
-    <S.Button {...props} $isSubmitting={isSubmitting}>
+    <S.Button {...props} $isSubmitting={isSubmitting} $padding={padding}>
       {isSubmitting && (
         <S.ButtonLoader>
           <Loader color='#FFF'/>

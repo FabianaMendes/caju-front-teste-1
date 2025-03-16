@@ -7,16 +7,19 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 16px;
 `;
 
 export const Card = styled.div`
   border: 2px solid #f0f0f0;
-  width: 500px;
-  padding: 48px;
+  width: 100%;
+  max-width: 500px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  @media (min-width: 820px) {
+    padding: 48px;
+  }
 `;
 
 export const StyledIconButton = styled(IconButton)`
