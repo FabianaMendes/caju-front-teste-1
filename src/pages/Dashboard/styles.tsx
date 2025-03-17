@@ -5,8 +5,12 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  max-height: calc(100vh - 64px);
+  max-height: calc(100% - 64px);
   margin-top: 64px;
+  padding-bottom: 80px;
+  @media (min-width: 820px) {
+    padding-bottom: 0;
+  }
 `;
 
 export const CollumnsWrapper = styled.div`
